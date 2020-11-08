@@ -1242,15 +1242,6 @@ dependencies = [
 
 [[package]]
 name = "warp"
-version = "0.1.0"
-dependencies = [
- "serde",
- "tokio",
- "warp 0.2.5",
-]
-
-[[package]]
-name = "warp"
 version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f41be6df54c97904af01aa23e613d4521eed7ab23537cede692d4058f6449407"
@@ -1275,6 +1266,15 @@ dependencies = [
  "tracing",
  "tracing-futures",
  "urlencoding",
+]
+
+[[package]]
+name = "warp-playground"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "tokio",
+ "warp",
 ]
 
 [[package]]
