@@ -42,6 +42,7 @@ impl Actor {
                 
                 match lock.get_data().get(0) {
                     Some(val) if *val > (10 as u8) => {
+                        // TODO update status 
                         println!("Terminating Action");
                         break;
                     }
