@@ -1,21 +1,19 @@
-use tokio::sync::Mutex;
+use context::AppContext;
 use warp::Filter;
 
-use std::{convert::Infallible, sync::Arc};
+use std::convert::Infallible;
 
 mod actor;
+mod data;
 mod context;
-
-type AppContext = Arc<Mutex<context::Context>>;
-
-pub fn init() -> AppContext {
-    Arc::new(Mutex::new(context::Context::new()))
-}
 
 #[tokio::main]
 async fn main() {
-    let context: AppContext = init();
-    warp::serve(actor::api::routes(context))
+    let context = AppContext::init();
+
+    let routes = actor::api::routes(context.clone()).or(data::api::routes(context));
+
+    warp::serve(routes)
         .run(([127, 0, 0, 1], 3030))
         .await;
 }
